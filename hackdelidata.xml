@@ -2937,6 +2937,16 @@ Assumed Scenario: Connect to internet with eth0, setup wifi on wlan0.
     update-rc.d hostapd defaults
     update-rc.d CUSTOM_port-fwd-on.sh</info>
         </option>
+	<option name="Wireless Access Point Phishing">
+	<info>Create an Evil Twin wireless access point and conduct a phishing attack.
+		
+Install:
+	git clone https://github.com/FluxionNetwork/fluxion.git
+	./fluxion/install/install.sh
+		
+Run:
+	./fluxion/fluxion</info>
+	</option>
         <option name="TODO: QR-code">
             <info></info>
             
