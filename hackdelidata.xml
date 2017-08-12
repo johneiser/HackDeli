@@ -758,7 +758,13 @@ Delete message:
             <info>Extract information from a DNS service.
                 
 Usage:
-    host -l [domain] [server]</info>
+    nslookup
+    &gt; server [target DNS server]
+    &gt; [target ip]
+    &gt; [target domain]
+
+Zone Transfer:
+    dig axfr @[target DNS server] [target domain]</info>
         </option>
         <option name="NFS">
             <info>Extract information from a NFS service.
@@ -1283,6 +1289,9 @@ Check Outbound Ports:
         </option>
         <option name="Sensitive Files">
             <info>Dump information found in sensitive files.
+
+Files in home:
+    find /home -type f -printf "%f\t%p\t%u\t%g\t%m\n" 2&gt;/dev/null | column -t 
             
 Hashes:
     cat /etc/shadow
@@ -1509,13 +1518,15 @@ Usage:
             <info>Check a file (e.g. image) for hidden messages.
                 
 Usage:
-    strings [file]</info>
+    strings [file] | less</info>
         </option>
         <option name="Find Embedded Files">
             <info>Search for embedded files within a file.
             
 Usage:
-    foremost -i [file] -T</info>
+    foremost -i [file] -T
+    (or)
+    binwalk [file]</info>
         </option>
         <option name="Find Embedded Files - Rar">
             <info>Check if a file is hiding another file inside it using a RAR archive.
@@ -1532,10 +1543,10 @@ If true:
         unrar e [file].rar</info>
         </option>
         <option name="Find Embedded Files - Steganography">
-            <info>Extract a file embedded throughs steganography.
+            <info>Extract a file embedded through steganography.
             
 Usage:
-    steghide --extract -sf [file]</info>
+    steghide extract -sf [file]</info>
         </option>
         <option name="Crack a Zip - Dictionary Attack">
             <info>Use a dictionary attack to crack an encrypted .zip file.
@@ -5464,6 +5475,12 @@ Configure SSH:
     Place the newly created public key in '~/.ssh/' on the remote SSH server.</info>
             
         </option>
+        <option name="HTTP Server">
+            <info>Set up a simple HTTP Server.
+
+Usage:
+  python -m SimpleHTTPServer [port]</info>
+        </option>
         <option name="SMTP Server">
             <info>Set up a simple SMTP Server.
             
@@ -5986,6 +6003,12 @@ Usage:
     import [output].png
     { Click on Window }</info>
         </option>
+        <option name="Write to clipboard">
+            <info>Write data to the clipboard.
+
+Usage:
+    cat [file] | xclip</info>
+        </option>
         <option name="Base64 decode">
             <info>Decode a base64 encoded string.
             
@@ -6021,7 +6044,11 @@ Usage:
             <info>Upgrade a non-interactive shell to an interactive one with a python command.
                 
 Usage:
-    python -c 'import pty; pty.spawn("/bin/bash")'</info>
+    python -c 'import pty; pty.spawn("/bin/bash")'
+    [ctrl-z to background, note id]
+    stty raw -echo
+    (if needed) export TERM=[screen]
+    fg [id]</info>
         </option>
         <option name="Copy file through ssh">
             <info>Copy a file through ssh to another host.
