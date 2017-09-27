@@ -4964,6 +4964,11 @@ Sets:
 echo -ne '\x41\x41\x41\x41' > shellcode.txt
 ndisasm -b32 shellcode.txt > assembly.txt</info>
 		</option>
+		<option name="Assemble Assembly">
+			<info>Assemble an assembly file into an executable.
+				
+nasm -f elf32 hello.asm && ld hello.o && ./a.out</info>
+		</option>
 	</area>
     <area name="Buffer Overflow">
         <option name="Bad Characters">
