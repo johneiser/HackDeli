@@ -4961,13 +4961,13 @@ Sets:
 		<option name="Disassemble Shellcode">
 			<info>Disassemble a hex string (shellcode) into assembly.
 				
-echo -ne '\x41\x41\x41\x41' > shellcode.txt
-ndisasm -b32 shellcode.txt > assembly.txt</info>
+echo -ne '\x41\x41\x41\x41' &gt; shellcode.txt
+ndisasm -b32 shellcode.txt &gt; assembly.txt</info>
 		</option>
 		<option name="Assemble Assembly">
 			<info>Assemble an assembly file into an executable.
 				
-nasm -f elf32 hello.asm && ld hello.o && ./a.out</info>
+nasm -f elf32 hello.asm &amp;&amp; ld hello.o &amp;&amp; ./a.out</info>
 		</option>
 	</area>
     <area name="Buffer Overflow">
