@@ -5032,6 +5032,16 @@ Set Stop Function:
 Usage:
   echo -ne '\x41\x41\x41\x41' | ndisasm -b 32 -p intel -</info>
       </option>
+      <option name="Emulate and Analyze Shellcode">
+        <info>Emulate shellcode to analyze its functionality.
+    
+Usage:
+  echo -ne '\x41\x41\x41\x41' | sctest -Ss 100 -v
+  
+To view graphically:
+  apt-get install -y xdot
+  echo -ne '\x41\x41\x41\x41' | sctest -Ss 100 -v -G graph.dot &amp;&amp; xdot graph.dot</info>
+      </option>
       <option name="Disassemble Executable">
         <info>Disassemble an executable, syscall, or libc function.
         
