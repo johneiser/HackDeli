@@ -854,7 +854,7 @@ All users:
         </option>
         <option name="Operating System">
             <info>Dump information related to the underlying system.
-                
+
 Operating System:
     systeminfo
     ver
@@ -1169,7 +1169,11 @@ Privileges:
         </option>
         <option name="Operating System">
             <info>Dump information related to the underlying system.
-                
+
+CPU Information:
+    lscpu
+    cat /proc/cpuinfo
+             
 Operating System:
 *   cat /etc/*-release
     cat /etc/issue
@@ -4957,19 +4961,149 @@ Sets:
             
         </option>
     </area>
-	<area name="Reverse Engineering">
-		<option name="Disassemble Shellcode">
-			<info>Disassemble a hex string (shellcode) into assembly.
-				
-echo -ne '\x41\x41\x41\x41' &gt; shellcode.txt
-ndisasm -b32 shellcode.txt &gt; assembly.txt</info>
-		</option>
-		<option name="Assemble Assembly">
-			<info>Assemble an assembly file into an executable.
-				
-nasm -f elf32 hello.asm &amp;&amp; ld hello.o &amp;&amp; ./a.out</info>
-		</option>
-	</area>
+    <area name="Reverse Engineering">
+      <option name="GNU Debugger">
+        <info>Common commands used when operating the GNU Debugger (gdb).
+        
+Usage:
+  gdb [executable]
+  
+Show functions:
+  (gdb) info functions
+  
+Set breakpoint:
+  (gdb) b [address | label]
+  
+Run:
+  (gdb) run
+  
+Step:
+  (gdb) stepi
+  (gdb) nexti
+  
+Show registers:
+  (gdb) info registers
+  
+Show variables:
+  (gdb) info variables
+  
+Show flags:
+  (gdb) p $eflags
+  
+Show contents at pointer as an ascii string:
+  (gdb) x/s 0x80490a4 (char)
+  (gdb) x/10s $ecx (10 char)
+  
+Show contents at pointer as hex:
+  (gdb) x/xb 0x80490a4 (byte)
+  (gdb) x/4xb &amp;var1 (4 bytes)
+  (gdb) x/xh &amp;var1 (word)
+  (gdb) x/xw &amp;var1 (dword)
+
+Show disassembled:
+  (gdb) disassemble
+  (gdb) disassemble $eip,+10
+  (gdb) x/30i 0x80490a4
+  
+Continue (after break):
+  (gdb) c
+  
+Change assembly syntax:
+  (gdb) set disassembly-flavor [att : intel]
+  (gdb) show disassembly-flavor
+  
+Set Stop Function:
+  (gdb) define hook-stop
+  &gt;print/x $eax
+  &gt;print/x $ebx
+  &gt;print/x $ecx
+  &gt;x/8xb &amp;sample
+  &gt;disassemble $eip,+10
+  &gt;end
+(or)
+  (gdb) display/x $eax
+  (gdb) display/x $ebx
+  (gdb) display/x $ecx
+        </info>
+      </option>
+      <option name="Disassemble Shellcode">
+        <info>Disassemble a hex string (shellcode) into assembly.
+		
+Usage:
+  echo -ne '\x41\x41\x41\x41' &gt; shellcode.txt
+  ndisasm -b32 shellcode.txt &gt; assembly.txt</info>
+      </option>
+      <option name="Disassemble Executable">
+        <info>Disassemble an executable, syscall, or libc function.
+        
+Usage:
+  objdump -d [executable] -M intel</info>
+      </option>
+      <option name="Convert Binary to Shellcode">
+        <info>Dump a binary executable and output a compatible shellcode string.
+        
+Usage:
+  objdump -d ./[executable]|grep '[0-9a-f]:'|grep -v 'file'|cut -f2 -d:|cut -f1-6 -d' '|tr -s ' '|tr '\t' ' '|sed 's/ $//g'|sed 's/ /\\x/g'|paste -d '' -s |sed 's/^/"/'|sed 's/$/"/g'</info>
+      </option>
+      <option name="Show ELF Headers (entry point)">
+        <info>Show the headers of an ELF executable, including the entry point.
+        
+Usage:
+  readelf -h [executable]</info>
+      </option>
+    </area>
+    <area name="Shellcode">
+      <option name="Compile">
+        <info>Compile an assembly file into an executable.
+        
+Usage:
+  nasm -f elf32 -o hello.o hello.asm &amp;&amp; ld -o hello hello.o &amp;&amp; ./hello
+(or)
+  nasm -f elf32 -o hello.o hello.asm &amp;&amp; gcc -o hello hello.o &amp;&amp; ./hello</info>
+      </option>
+      <option name="Test Execution (C)">
+        <info>Test the execution of shellcode by wrapping it in a C program.
+
+poc.c
+--------------------------------------------------
+unsigned char code[] = \
+"SHELLCODE ";
+
+main() {
+  printf("Shellcode Length: %d\n", strlen(code));
+  int (*ret)() = (int(*)())code;
+  ret();
+}
+--------------------------------------------------
+
+Usage:
+  gcc -fno-stack-protector -z execstack -o poc poc.c &amp;&amp; ./poc</info>
+      </option>
+      <option name="View Syscall Syntax">
+        <info>View the syntax of a system call.
+        
+Usage:
+  man 2 [syscall]
+  
+Example:
+  man 2 exit</info>
+      </option>
+      <option name="View LibC Syntax">
+        <info>View the syntax of a libc call.
+        
+Usage:
+  man 3 [libc function]
+  
+Example:
+  man 3 exit</info>
+      </option>
+      <option name="Convert String into Little Endian Hex Pieces">
+        <info>Convert a string into a series of reversed hex pieces, compatible with pushing to the stack.
+      
+Usage:
+  python -c 'str="[STRING]";hex=str[::-1].encode("hex");print ["0x"+hex[i:i+8] for i in range(0,len(hex),8)]'</info>
+      </option>
+    </area>
     <area name="Buffer Overflow">
         <option name="Bad Characters">
             <info>List of characters used to check for bad characters.
