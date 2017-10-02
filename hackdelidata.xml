@@ -5030,8 +5030,7 @@ Set Stop Function:
         <info>Disassemble a hex string (shellcode) into assembly.
 		
 Usage:
-  echo -ne '\x41\x41\x41\x41' &gt; shellcode.txt
-  ndisasm -b32 shellcode.txt &gt; assembly.txt</info>
+  echo -ne '\x41\x41\x41\x41' | ndisasm -b 32 -p intel -</info>
       </option>
       <option name="Disassemble Executable">
         <info>Disassemble an executable, syscall, or libc function.
