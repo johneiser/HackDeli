@@ -5,7 +5,7 @@
 body, p, h1, h2, h3, h4, h5, h6, pre, input, button {
   font-family: "Courier New", Courier, monospace;
 }
-pre {
+.prewrap {
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
     white-space: -pre-wrap;      /* Opera 4-6 */
@@ -90,7 +90,7 @@ function popPrint() {
     <input id="back" type="button" class="w3-button" onClick="popPrint()" value="<< Back"/>
     <pre><h2 id="header"></h2></pre>
     <div>
-      <pre id="output"></pre>
+      <pre id="output" class="prewrap"></pre>
     </div>
     <pre>
 ====================================================================
