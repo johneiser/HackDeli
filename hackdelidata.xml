@@ -5097,15 +5097,6 @@ Usage:
 Example:
   man 2 exit</info>
       </option>
-      <option name="View LibC Syntax">
-        <info>View the syntax of a libc call.
-        
-Usage:
-  man 3 [libc function]
-  
-Example:
-  man 3 exit</info>
-      </option>
       <option name="Convert String into Little Endian Hex Pieces">
         <info>Convert a string into a series of reversed hex pieces, compatible with pushing to the stack.
       
