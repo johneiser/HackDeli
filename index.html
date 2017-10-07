@@ -34,6 +34,11 @@ function printOptions() {
   header = "";
   output = "";
   root = stack[stack.length-1];
+  if (root.parent().attr("name")) {
+    $("#back").show();
+  } else {
+    $("#back").hide();
+  }
   for (i = 0; i < stack.length; i++) {
     if (stack[i].parent().attr("name")) {
       header += stack[i].parent().attr("name") + '\n';
