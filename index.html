@@ -41,7 +41,7 @@ function printOptions() {
   }
   for (i = 0; i < stack.length; i++) {
     if (stack[i].parent().attr("name")) {
-      header += stack[i].parent().attr("name") + '\n';
+      header += '> ' + stack[i].parent().attr("name") + '\n';
     }
   }
   $("#header").html(header);
@@ -88,7 +88,7 @@ function popPrint() {
 ====================================================================
     </pre>
     <input id="back" type="button" class="w3-button" onClick="popPrint()" value="<< Back"/>
-    <pre><h2 id="header"></h2></pre>
+    <pre class="prewrap"><h2 id="header"></h2></pre>
     <div>
       <pre id="output" class="prewrap"></pre>
     </div>
