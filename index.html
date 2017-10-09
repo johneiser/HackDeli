@@ -1,8 +1,13 @@
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HackDeli</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-body, p, h1, h2, h3, h4, h5, h6, pre, input, button {
+body, p, h1, h2, h3, h4, h5, h6, pre, input {
   font-family: "Courier New", Courier, monospace;
 }
 .prewrap {
@@ -22,16 +27,13 @@ $(document).ready(function() {
   function init(document) {
     stack.push($(document).children($(document)[0]).children());
     parameters = getParameters(location);
-    if (parameters[keys[0]]) {
-      pushPrint(parameters[keys[0]]);
-      if (parameters[keys[1]]) {
-        pushPrint(parameters[keys[1]]);
-        if (parameters[keys[2]]) {
-          pushPrint(parameters[keys[2]]);
-        }
-      }
-    } else {
-        printOptions();
+    var j = 0;
+    while (j < keys.length) {
+      pushPrint(parameters[keys[j]]);
+      j++;
+    }
+    if (j == 0) {
+      printOptions();
     }
   }
   $.ajax({
@@ -72,8 +74,9 @@ function pushPrint(index) {
   root.each(function(i) {
     if (i == index) {
       stack.push($(this).children());
-      if (stack.length >=2 && stack.length <= 4) {
-        parameters[keys[stack.length-2]] = i;
+      var j = stack.length - 2;
+      if (j >= 0 && j < keys.length) {
+        parameters[keys[j]] = i;
       }
     }
   });
@@ -83,8 +86,9 @@ function pushPrint(index) {
 function popPrint() {
   if (stack.length > 1) {
     stack.pop();
-    if (stack.length >= 1 && stack.length <= 3) {
-      delete parameters[keys[stack.length-1]];
+    var j = stack.length - 1;
+    if (j >= 0 && j < keys.length) {
+      delete parameters[keys[j]];
     }
     setParameters();
     printOptions();
