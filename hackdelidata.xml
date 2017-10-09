@@ -5637,8 +5637,14 @@ Usage:
 (on Windows target)
 	C:&gt; \\[server ip]\[name]\[file to execute]</info>
 	    </option>
-        <option name="SMTP Server">
-            <info>Set up a simple SMTP Server.
+	    <option name="SMTP Server">
+		    <info>Set up a simple SMTP Server.
+			    
+Usage:
+	python -m smtpd -n -c DebuggingServer [Listening IP]:25</info>
+	    </option>
+        <option name="SMTP Server - Full">
+            <info>Set up a full SMTP Server.
             
 Usage:
     dpkg-reconfigure exim4-config
