@@ -65,7 +65,7 @@ function printOptions() {
       output += '<input type="button" class="w3-button" onClick="pushPrint(' + i + ')" value="' + $(this).attr("name") + '"/><br>';
     });
   } else {
-    output += '<div style="text-align:left;"><pre>' + root.text() + '</pre></div>';
+    output += '<div style="text-align:left;">' + root.text().replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>';
   }
   $("#output").html(output);
 }
