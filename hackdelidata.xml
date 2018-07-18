@@ -5088,7 +5088,26 @@ main() {
 Usage:
   gcc -fno-stack-protector -z execstack -o poc poc.c &amp;&amp; ./poc</info>
       </option>
-	    
+	    <option name="Test Execution (Python2)">
+	<info>Test the execution of shellcode by wrapping it in a Python script.
+poc.py
+-------------------------------------------------
+#!/usr/bin/env python
+import os, ctypes, mmap, struct
+shellcode = b"\xC0\xDE"
+
+map = mmap.mmap(-1, len(buf), mmap.MAP_PRIVATE, mmap.PROT_READ + mmap.PROT_WRITE + mmap.PROT_EXEC)
+map.write(shellcode)
+addr = struct.unpack("&lt;Q", ctypes.string_at(id(map)+16, 8))[0]
+func = ctypes.cast(addr, ctypes.CFUNCTYPE(ctypes.c_void_p))
+pid = os.fork()
+if pid == 0:
+    func()
+-------------------------------------------------
+	
+Usage:
+    python poc.py</info>
+	    </option>
 	    <option name="Test Execution (Python3)">
         <info>Test the execution of shellcode by wrapping it in a Python3 script.
 ​
@@ -5098,7 +5117,7 @@ poc.py
 from ctypes import CDLL, c_char_p, c_void_p, memmove, cast, CFUNCTYPE
 from sys import argv
 ​
-shellcode = b"\xCO\xDE"
+shellcode = b"\xC0\xDE"
 ​
 libc = CDLL('libc.so.6')
 sc = c_char_p(shellcode)
